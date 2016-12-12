@@ -21,9 +21,7 @@ const webpackConfig = {
   },
   module : {}
 }
-// ------------------------------------
-// Entry Points
-// ------------------------------------
+// 文件入口
 const APP_ENTRY = project.paths.client('main.js')
 
 webpackConfig.entry = {
@@ -33,26 +31,20 @@ webpackConfig.entry = {
   vendor : project.compiler_vendors
 }
 
-// ------------------------------------
-// Bundle Output
-// ------------------------------------
+// 打包输出目录
 webpackConfig.output = {
   filename   : `[name].[${project.compiler_hash_type}].js`,
   path       : project.paths.dist(),
   publicPath : project.compiler_public_path
 }
 
-// ------------------------------------
 // Externals
-// ------------------------------------
 webpackConfig.externals = {}
 webpackConfig.externals['react/lib/ExecutionEnvironment'] = true
 webpackConfig.externals['react/lib/ReactContext'] = true
 webpackConfig.externals['react/addons'] = true
 
-// ------------------------------------
 // Plugins
-// ------------------------------------
 webpackConfig.plugins = [
   new webpack.DefinePlugin(project.globals),
   new HtmlWebpackPlugin({
@@ -67,14 +59,11 @@ webpackConfig.plugins = [
   })
 ]
 
-// Ensure that the compiler exits on errors during testing so that
-// they do not get skipped and misreported.
+// 确保编译器存在误差在测试过程中，使他们不被跳过和误报
 if (__TEST__ && !argv.watch) {
   webpackConfig.plugins.push(function () {
     this.plugin('done', function (stats) {
       if (stats.compilation.errors.length) {
-        // Pretend no assets were generated. This prevents the tests
-        // from running making it clear that there were warnings.
         throw new Error(
           stats.compilation.errors.map(err => err.message || err)
         )
@@ -104,7 +93,7 @@ if (__DEV__) {
   )
 }
 
-// Don't split bundles during testing, since we only want import one bundle
+// 在测试过程中不要分割bundle，此时仅需一个bundle
 if (!__TEST__) {
   webpackConfig.plugins.push(
     new webpack.optimize.CommonsChunkPlugin({
@@ -113,10 +102,7 @@ if (!__TEST__) {
   )
 }
 
-// ------------------------------------
-// Loaders
-// ------------------------------------
-// JavaScript / JSON
+// 配置加载器
 webpackConfig.module.loaders = [{
   test    : /\.(js|jsx)$/,
   exclude : /node_modules/,
@@ -127,11 +113,8 @@ webpackConfig.module.loaders = [{
   loader : 'json'
 }]
 
-// ------------------------------------
-// Style Loaders
-// ------------------------------------
-// We use cssnano with the postcss loader, so we tell
-// css-loader not to duplicate minimization.
+
+// 样式加载器
 const BASE_CSS_LOADER = 'css?sourceMap&-minimize'
 
 webpackConfig.module.loaders.push({
@@ -176,8 +159,7 @@ webpackConfig.postcss = [
   })
 ]
 
-// File loaders
-/* eslint-disable */
+// 文件加载器
 webpackConfig.module.loaders.push(
   { test: /\.woff(\?.*)?$/,  loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff' },
   { test: /\.woff2(\?.*)?$/, loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=application/font-woff2' },
@@ -187,14 +169,7 @@ webpackConfig.module.loaders.push(
   { test: /\.svg(\?.*)?$/,   loader: 'url?prefix=fonts/&name=[path][name].[ext]&limit=10000&mimetype=image/svg+xml' },
   { test: /\.(png|jpg)$/,    loader: 'url?limit=8192' }
 )
-/* eslint-enable */
 
-// ------------------------------------
-// Finalize Configuration
-// ------------------------------------
-// when we don't know the public path (we know it only when HMR is enabled [in development]) we
-// need to use the extractTextPlugin to fix this issue:
-// http://stackoverflow.com/questions/34133808/webpack-ots-parsing-error-loading-fonts/34133809#34133809
 if (!__DEV__) {
   debug('Applying ExtractTextPlugin to CSS loaders.')
   webpackConfig.module.loaders.filter((loader) =>

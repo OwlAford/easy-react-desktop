@@ -1,33 +1,25 @@
-/* eslint key-spacing:0 spaced-comment:0 */
 const path = require('path')
 const debug = require('debug')('app:config:project')
 const argv = require('yargs').argv
 const ip = require('ip')
 debug('Creating default configuration.')
-// ========================================================
-// Default Configuration
-// ========================================================
+
+// 默认配置
 const config = {
   env : process.env.NODE_ENV || 'development',
 
-  // ----------------------------------
-  // Project Structure
-  // ----------------------------------
+  // 项目文件结构
   path_base  : path.resolve(__dirname, '..'),
   dir_client : 'src',
   dir_dist   : 'dist',
   dir_public : 'public',
   dir_server : 'server',
 
-  // ----------------------------------
-  // Server Configuration
-  // ----------------------------------
-  server_host : ip.address(), // use string 'localhost' to prevent exposure on local network
+  // 运行服务配置
+  server_host : ip.address(),
   server_port : process.env.PORT || 3000,
 
-  // ----------------------------------
-  // Compiler Configuration
-  // ----------------------------------
+  // 编译配置
   compiler_babel : {
     cacheDirectory : true,
     plugins        : ['transform-runtime'],
@@ -51,19 +43,8 @@ const config = {
   ]
 }
 
-/************************************************
--------------------------------------------------
 
-All Internal Configuration Below
-Edit at Your Own Risk
-
--------------------------------------------------
-************************************************/
-
-// ------------------------------------
 // Environment
-// ------------------------------------
-// N.B.: globals added here must _also_ be added to .eslintrc
 config.globals = {
   'process.env'  : {
     'NODE_ENV' : JSON.stringify(config.env)
@@ -74,9 +55,7 @@ config.globals = {
   '__BASENAME__' : JSON.stringify(process.env.BASENAME || '')
 }
 
-// ------------------------------------
 // Validate Vendor Dependencies
-// ------------------------------------
 const pkg = require('../package.json')
 
 config.compiler_vendors = config.compiler_vendors
@@ -90,9 +69,7 @@ config.compiler_vendors = config.compiler_vendors
     )
   })
 
-// ------------------------------------
 // Utilities
-// ------------------------------------
 function base () {
   const args = [config.path_base].concat([].slice.call(arguments))
   return path.resolve.apply(path, args)
@@ -105,9 +82,7 @@ config.paths = {
   dist   : base.bind(null, config.dir_dist)
 }
 
-// ========================================================
 // Environment Configuration
-// ========================================================
 debug(`Looking for environment overrides for NODE_ENV "${config.env}".`)
 const environments = require('./environments.config')
 const overrides = environments[config.env]
