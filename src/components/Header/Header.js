@@ -3,7 +3,7 @@ import { IndexLink, Link } from 'react-router'
 import './Header.scss'
 
 export const Header = () => (
-  <div>
+  <header>
     <h1>Blade Starter Kit</h1>
     <IndexLink to='/' activeClassName='route-active'>
       Home
@@ -12,7 +12,11 @@ export const Header = () => (
     <Link to='/counter' activeClassName='route-active'>
       Counter
     </Link>
-  </div>
+    {' · '}
+    <Link to='/user' activeClassName='route-active'>
+      User
+    </Link>
+  </header>
 )
 
 export default Header

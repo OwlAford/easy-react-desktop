@@ -28,11 +28,6 @@ export const doubleAsync = () => {
   }
 }
 
-export const actions = {
-  increment,
-  doubleAsync
-}
-
 // Reducer =============================================================
 const initialState = {
   count: 0,

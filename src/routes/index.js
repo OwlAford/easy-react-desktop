@@ -1,6 +1,7 @@
 import CoreLayout from '../layouts/CoreLayout'
 import Home from './Home'
-import CounterRoute from './Counter'
+// import CounterRoute from './Counter'
+// import UserRoute from './User'
 
 // 配置路由
 export const createRoutes = (store) => ({
@@ -17,7 +18,8 @@ export const createRoutes = (store) => ({
   getChildRoutes (location, cb) {
     require.ensure([], (require) => {
       cb(null, [
-        require('./Counter').default(store)
+        require('./Counter').default(store),
+        require('./User').default(store)
       ])
     })
   }
