@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../components/Header'
-import '../styles/normalize.css'
-import '../styles/core.scss'
+import Header from 'COMPONENT/Header'
+import 'STYLE/normalize.css'
+import 'STYLE/core.scss'
 import './CoreLayout.scss'
 
 // 构建页面主视图

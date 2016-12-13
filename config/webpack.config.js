@@ -5,6 +5,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const project = require('./project.config')
 const debug = require('debug')('app:config:webpack')
+// 定义根目录
+const path = require('path')
+const rootPath = path.resolve(__dirname, '..')
+const src = path.join(rootPath, 'src')
 
 const __DEV__ = project.globals.__DEV__
 const __PROD__ = project.globals.__PROD__
@@ -17,7 +21,17 @@ const webpackConfig = {
   devtool : project.compiler_devtool,
   resolve : {
     root       : project.paths.client(),
-    extensions : ['', '.js', '.jsx', '.json']
+    extensions : ['', '.js', '.jsx', '.json'],
+    alias: {
+      // 自定义路径别名
+      STORE: path.join(src, 'store'),
+      COMPONENT: path.join(src, 'components'),
+      STYLE: path.join(src, 'styles'),
+      CONTAINER: path.join(src, 'containers'),
+      LAYOUT: path.join(src, 'layouts'),
+      UTIL: path.join(src, 'utils'),
+      ROUTE: path.join(src, 'routes')
+    }  
   },
   module : {}
 }

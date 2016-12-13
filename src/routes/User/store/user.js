@@ -7,6 +7,13 @@ export function setuid (value) {
   }
 }
 
+export function setname (value) {
+  return {
+    type    : 'SET_NAME',
+    payload : value
+  }
+}
+
 export const getuidAsync = () => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
@@ -24,7 +31,8 @@ export const getuidAsync = () => {
 // Reducer =============================================================
 
 const initialState = {
-  uid: ''
+  uid: '',
+  mine: ''
 }
 export default function userReducer (state = initialState, action) {
   switch (action.type) {
@@ -32,6 +40,11 @@ export default function userReducer (state = initialState, action) {
       return {
         ...state,
         uid: action.payload
+      }
+    case 'SET_NAME' :
+      return {
+        ...state,
+        mine: action.payload
       }
     default:
       return state

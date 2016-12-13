@@ -1,4 +1,4 @@
-import CoreLayout from '../layouts/CoreLayout'
+import CoreLayout from 'LAYOUT/CoreLayout'
 import Home from './Home'
 // import CounterRoute from './Counter'
 // import UserRoute from './User'

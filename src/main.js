@@ -1,9 +1,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 // createStore创建状态管理树
-import createStore from './store/createStore'
+import createStore from 'STORE/createStore'
 // 应用容器模块
-import AppContainer from './containers/AppContainer'
+import AppContainer from 'CONTAINER/AppContainer'
 
 // 创建初始化状态容器，指向一个window全局变量
 const initialState = window.___INITIAL_STATE__
@@ -16,7 +16,7 @@ const MOUNT_NODE = document.getElementById('root')
 // 定义一个渲染方法
 let render = () => {
   // 将store方法注入路由器，用于管理state状态树，并获取该路由
-  const routes = require('./routes/index').default(store)
+  const routes = require('ROUTE').default(store)
   // 在根节点渲染页面
   ReactDOM.render(
     <AppContainer store={store} routes={routes} />,
@@ -46,7 +46,7 @@ if (__DEV__) {
     }
 
     // 设置模块热替换方法
-    module.hot.accept('./routes/index', () =>
+    module.hot.accept('ROUTE', () =>
       setImmediate(() => {
         ReactDOM.unmountComponentAtNode(MOUNT_NODE)
         render()

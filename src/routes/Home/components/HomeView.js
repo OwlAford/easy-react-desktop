@@ -4,7 +4,7 @@ import './HomeView.scss'
 
 export const HomeView = () => (
   <div>
-    <h4>Welcome!</h4>
+    <h4>这是一只大鸭子!</h4>
     <img
       alt='这个真的是一只鸭子!'
       className='duck'

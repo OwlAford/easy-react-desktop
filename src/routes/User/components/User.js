@@ -11,6 +11,7 @@ export default class Counter extends Component {
   constructor (props, context) {
     super(props, context)
     this.state = { 
+      killer: 'Alex',
       groups: [
         {
           name: '杭州银行',
@@ -68,6 +69,7 @@ export default class Counter extends Component {
         <List
           groups={groups}
         />
+        { this.props.children }
       </div>
     )
   }

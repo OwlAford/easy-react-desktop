@@ -1,5 +1,5 @@
 // 获取 reducer 注入方法
-import { injectReducer } from '../../store/reducers'
+import { injectReducer } from 'STORE/reducers'
 
 export default (store) => ({
   path : 'counter',
