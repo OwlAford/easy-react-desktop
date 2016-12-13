@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
-import { getuidAsync } from '../store/user'
+import { getuidAsync, setuid } from '../store/user'
 
 import User from '../components/User'
 
 const mapDispatchToProps = {
+  clear : () => setuid('default'),
   getuidAsync
 }
 

@@ -1,7 +1,8 @@
 import React from 'react'
 import Header from '../components/Header'
-import './CoreLayout.scss'
+import '../styles/normalize.css'
 import '../styles/core.scss'
+import './CoreLayout.scss'
 
 // 构建页面主视图
 export const CoreLayout = ({ children }) => (

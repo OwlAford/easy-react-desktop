@@ -1,5 +1,5 @@
 // applyMiddleware 为应用middleware中间件方法
-// compose 为合成一般，一般用于将多个middleware中间件合并
+// compose 一般用于将多个middleware中间件合并
 // createStore 用于创建store状态管理器
 import { applyMiddleware, compose, createStore } from 'redux'
 // redux-thunk 帮助你统一了异步和同步 action 的调用方式，把异步过程放在 action 级别解决edux-thunk 帮助你统一了异步和同步 action 的调用方式，把异步过程放在 action 级别解决

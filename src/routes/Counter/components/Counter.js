@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { PropTypes } from 'react'
 
 // 定义 counter 木偶组件
 export const Counter = (props) => (
@@ -12,7 +12,7 @@ export const Counter = (props) => (
       Double (Async)
     </button>
     {' '}
-    <h2>Counter: {props.counter.time}</h2>
+    <h2>Time: {props.counter.time}</h2>
     <button className='btn btn-default' onClick={props.logtime}>
       Get Time
     </button>
@@ -20,10 +20,10 @@ export const Counter = (props) => (
 )
 
 Counter.propTypes = {
-  counter     : React.PropTypes.object.isRequired,
-  doubleAsync : React.PropTypes.func.isRequired,
-  logtime : React.PropTypes.func.isRequired,
-  increment   : React.PropTypes.func.isRequired
+  counter     : PropTypes.object.isRequired,
+  doubleAsync : PropTypes.func.isRequired,
+  logtime     : PropTypes.func.isRequired,
+  increment   : PropTypes.func.isRequired
 }
 
 export default Counter
