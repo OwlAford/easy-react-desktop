@@ -1,3 +1,5 @@
+import {BZ_REQUESTER} from 'UTIL/requesterMiddleware'
+
 // Actions =============================================================
 
 export function setuid (value) {
@@ -14,17 +16,19 @@ export function setname (value) {
   }
 }
 
-export const getuidAsync = () => {
+export const getuidAsync = (data) => {
   return (dispatch, getState) => {
-    return new Promise((resolve) => {
-      fetch('http://amaze.qiniudn.com/user')
-      .then((res) => {
-        return res.json().then((json) => {
-          dispatch(setuid(json.uid))
-          resolve()
-        })
-      })
+    dispatch(getuidAction(data)).then(action => {
+        dispatch(setuid(action.uid));
     })
+  }
+}
+
+const getuidAction = (data) => {
+  return {
+    [BZ_REQUESTER] : {
+      url: 'http://amaze.qiniudn.com/user'
+    }
   }
 }
 

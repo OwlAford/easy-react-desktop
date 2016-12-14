@@ -41,6 +41,13 @@ export default class Counter extends Component {
       ]
     }
   }
+  componentWillMount () {
+    this.props.getuidAsync()
+  }
+
+  handleItemClick (item,index,childState) {
+      console.log(item, 'is clicked')
+  }
 
   componentDidMount () {
     console.log('dom更新完毕！')
@@ -55,8 +62,8 @@ export default class Counter extends Component {
     return (
       <div style={{ margin: '0 auto' }} >
         <h1>UID:{this.props.user.uid}</h1>
-        <button className='btn btn-default' onClick={this.props.getuidAsync}>
-          Get UID
+        <button className='btn btn-default' onClick={this.handleItemClick}>
+          trigger
         </button>
         <br/>
         <button className='btn btn-default' onClick={this.props.clear}>

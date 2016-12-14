@@ -11,9 +11,11 @@ import makeRootReducer from './reducers'
 // 获取url更新后回调方法，用于触发新store的注入
 import { updateLocation } from './location'
 
+import requesterMiddleware from 'UTIL/requesterMiddleware'
+
 export default (initialState = {}) => {
   // 中间件方法扩展
-  const middleware = [thunk]
+  const middleware = [thunk, requesterMiddleware]
   // store增强器扩展
   const enhancers = []
   // 定义合并增强器方法用户合并enhancers

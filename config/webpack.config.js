@@ -27,6 +27,7 @@ const webpackConfig = {
       STORE: path.join(src, 'store'),
       COMPONENT: path.join(src, 'components'),
       STYLE: path.join(src, 'styles'),
+      SERVICE: path.join(src, 'services'),
       CONTAINER: path.join(src, 'containers'),
       LAYOUT: path.join(src, 'layouts'),
       UTIL: path.join(src, 'utils'),
