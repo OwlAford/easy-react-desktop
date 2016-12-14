@@ -1,4 +1,3 @@
-// 不知道哪来的臭毛病，定义一个同名的字段字符串变量
 export const LOCATION_CHANGE = 'LOCATION_CHANGE'
 
 // Action
