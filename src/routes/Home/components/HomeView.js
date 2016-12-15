@@ -150,12 +150,12 @@ export default class HomeView extends Component {
               <Step title="In Process" description="This is a description" />
               <Step title="Waiting" description="This is a description" />
             </Steps>
-            <div style={{width: '733px', margin: '0 auto'}}>
+            <div style={{width: '777px', margin: '0 auto'}}>
               <Carousel autoplay>
-                <div><img alt='v1' style={{height: '340px'}} src={v1Image} /></div>
-                <div><img alt='v2' style={{height: '340px'}} src={v2Image} /></div>
-                <div><img alt='v3' style={{height: '340px'}} src={v3Image} /></div>
-                <div><img alt='v4' style={{height: '340px'}} src={v4Image} /></div>
+                <div><img alt='v1' style={{height: '360px'}} src={v1Image} /></div>
+                <div><img alt='v2' style={{height: '360px'}} src={v2Image} /></div>
+                <div><img alt='v3' style={{height: '360px'}} src={v3Image} /></div>
+                <div><img alt='v4' style={{height: '360px'}} src={v4Image} /></div>
               </Carousel>
             </div>
           </div>
