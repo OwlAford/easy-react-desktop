@@ -1,16 +1,67 @@
-html {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
+@mixin fullScreen {
+  width: 100%;
   height: 100%;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
+$blue : #108ee9;
+$sidebarWidth : 240px;
+$borderStyle : 1px solid #e9e9e9;
+
+body {
+  font-size: 14px;
+  background-color: #f7f7f7;
+}
+
+#root, .wrap, .container {
+  @include fullScreen;
+  min-height: 600px;
+}
+
+.container {
+  box-sizing: border-box;
+  padding-left: $sidebarWidth;
+}
+
+.content {
+  width: 100%;
+  padding: 10px;
+}
+
+.content-cell {
+  padding: 15px;
+  background-color: #fff;
+  margin-bottom: 10px;
+  border: $borderStyle;
+}
+
+.ft16 {
+  font-size: 16px;
+}
+
+.ft18 {
+  font-size: 18px;
+}
+
+.ft20 {
+  font-size: 20px;
+}
+
+.pl10 {
+	padding-left: 10px;
+}
+
+.pb10 {
+	padding-bottom: 10px;
+}
+
+.mr10 {
+  margin-right: 10px;
+}
+
+.fc-blue {
+  color: $blue;
+}
+
+.fr {
+  float: right;
 }

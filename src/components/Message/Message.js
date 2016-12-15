@@ -6,6 +6,7 @@ export default class Message extends Component {
   constructor (props) {
     super(props)
     this.state = { inputVal: '' }
+    // 将handleChange方法绑定在this上
     this.handleChange = handleChange.bind(this)
   }
 
