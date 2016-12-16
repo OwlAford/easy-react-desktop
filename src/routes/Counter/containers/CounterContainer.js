@@ -1,8 +1,6 @@
 import { connect } from 'react-redux'
 import { increment, doubleAsync, logtime } from '../store/counter'
-// 引入木偶组件
-// 组件的属性通过props传递，关于 reducer 和 action 组件本身并不关心
-import Counter from '../components/Counter'
+import CounterView from '../components/CounterView'
 
 const mapDispatchToProps = {
   increment : () => increment(1),
@@ -33,4 +31,4 @@ const mapStateToProps = (state) => ({
 */
 
 // 将 mapDispatchToProps 和 mapStateToProps 连接到组件
-export default connect(mapStateToProps, mapDispatchToProps)(Counter)
+export default connect(mapStateToProps, mapDispatchToProps)(CounterView)

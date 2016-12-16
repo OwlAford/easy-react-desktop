@@ -17,13 +17,14 @@ export function logtime (value = 1) {
 }
 
 // 这是一个 thunk，立即为一个延迟计算返回一个方法，在异步调用action非常有用
-export const doubleAsync = () => {
+export const doubleAsync = (cb) => {
   return (dispatch, getState) => {
     return new Promise((resolve) => {
       setTimeout(() => {
         dispatch(increment(getState().counter.count))
+        cb && cb()
         resolve()
-      }, 600)
+      }, 2600)
     })
   }
 }

@@ -4,11 +4,12 @@ import v2Image from '../assets/v2.jpg'
 import v3Image from '../assets/v3.jpg'
 import v4Image from '../assets/v4.jpg'
 import './HomeView.scss'
-import { Row, Col, Cascader, DatePicker, Icon, Menu, Table, Carousel, Steps } from 'antd'
+import { Row, Col, Cascader, DatePicker, Icon, Menu, Table, Carousel, Steps, Checkbox } from 'antd'
 import moment from 'moment'
 const { MonthPicker, RangePicker } = DatePicker
 const SubMenu = Menu.SubMenu
 const Step = Steps.Step
+const CheckboxGroup = Checkbox.Group
 
 const dateFormat = 'YYYY/MM/DD'
 const monthFormat = 'YYYY/MM'
@@ -48,7 +49,7 @@ const versionOptions = [{
   ]
 }]
 
-const columns = [{
+const simpleColumns = [{
   title: 'Name',
   dataIndex: 'name',
   render: text => <a href="#">{text}</a>,
@@ -60,9 +61,9 @@ const columns = [{
   dataIndex: 'address'
 }]
 
-const tableData = []
+const simpleTableData = []
 for (let i = 0; i < 46; i++) {
-  tableData.push({
+  simpleTableData.push({
     key: i,
     name: `Edward King ${i}`,
     age: 32,
@@ -70,8 +71,8 @@ for (let i = 0; i < 46; i++) {
   })
 }
 
-const pagination = {
-  total: tableData.length,
+const simpleTablePagination = {
+  total: simpleTableData.length,
   showSizeChanger: true,
   pageSize: 20,
   onShowSizeChange: (current, pageSize) => {
@@ -81,6 +82,61 @@ const pagination = {
     console.log('Current: ', current)
   }
 }
+
+const selectColumns = [{
+  title: 'Name',
+  dataIndex: 'name',
+  render: text => <a href="#">{text}</a>,
+}, {
+  title: 'Age',
+  dataIndex: 'age',
+}, {
+  title: 'Address',
+  dataIndex: 'address'
+}]
+
+const selectTableData = [{
+  key: '1',
+  name: 'John Brown',
+  age: 32,
+  address: 'New York No. 1 Lake Park'
+}, {
+  key: '2',
+  name: 'Jim Green',
+  age: 42,
+  address: 'London No. 1 Lake Park'
+}, {
+  key: '3',
+  name: 'Joe Black',
+  age: 32,
+  address: 'Sidney No. 1 Lake Park'
+}, {
+  key: '4',
+  name: 'Disabled User',
+  age: 99,
+  address: 'Sidney No. 1 Lake Park'
+}]
+
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+  },
+  onSelect: (record, selected, selectedRows) => {
+    console.log(record, selected, selectedRows)
+  },
+  onSelectAll: (selected, selectedRows, changeRows) => {
+    console.log(selected, selectedRows, changeRows)
+  },
+  getCheckboxProps: record => ({
+    disabled: record.name === 'Disabled User'    // Column configuration not to be checked
+  })
+}
+
+const optionsWithDisabled = [
+  { label: 'Apple', value: 'Apple' },
+  { label: 'Pear', value: 'Pear' },
+  { label: 'Orange', value: 'Orange', disabled: false }
+]
 
 
 export default class HomeView extends Component {
@@ -95,7 +151,11 @@ export default class HomeView extends Component {
     console.log(value)
   }
 
-  onChange (date, dateString) {
+  onCheckChange (checkedValues) {
+    console.log('checked = ', checkedValues)
+  }
+
+  onRangeChange (date, dateString) {
     console.log(date, dateString)
   }
 
@@ -142,7 +202,7 @@ export default class HomeView extends Component {
             </Row>
           </div>
           <div className='content-cell'>
-            <Table columns={columns} dataSource={tableData} pagination={pagination} scroll={{ y: 240 }}/>
+            <Table columns={simpleColumns} dataSource={simpleTableData} pagination={simpleTablePagination} scroll={{ y: 240 }}/>
           </div>
           <div className='content-cell'>
             <Steps current={1} status="error" className='pb10'>
@@ -159,14 +219,26 @@ export default class HomeView extends Component {
               </Carousel>
             </div>
           </div>
-
-          <MonthPicker defaultValue={moment('2015/01', monthFormat)} format={monthFormat} />
-          <br />
-          <RangePicker
-            defaultValue={[moment('2015/01/01', dateFormat), moment('2015/01/01', dateFormat)]}
-            format={dateFormat}
-            onChange={this.onChange}
-          />
+          <div className='content-cell'>
+            <Row>
+              <Col span={6}>
+                <MonthPicker defaultValue={moment('2015/01', monthFormat)} format={monthFormat} />
+              </Col>
+              <Col span={6}>
+                <RangePicker
+                  defaultValue={[moment('2015/01/01', dateFormat), moment('2015/01/01', dateFormat)]}
+                  format={dateFormat}
+                  onChange={this.onRangeChange}
+                />
+              </Col>
+              <Col span={8} offset={4}>
+                <div style={{padding: '5px'}}>
+                <CheckboxGroup options={optionsWithDisabled} disabled defaultValue={['Apple']} onChange={this.onCheckChange} />
+                </div>
+              </Col>
+            </Row>
+            <Table rowSelection={rowSelection} columns={selectColumns} dataSource={selectTableData} className='mt10' />
+          </div>
         </div>
       </div>
     )
