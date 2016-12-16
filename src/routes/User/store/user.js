@@ -16,18 +16,19 @@ export function setname (value) {
   }
 }
 
-export const getuidAsync = (data) => {
+export const getuidAsync = (cb) => {
   return (dispatch, getState) => {
-    dispatch(getuidAction(data)).then(action => {
-        dispatch(setuid(action.uid));
+    dispatch(getuidAction(cb)).then(action => {
+        dispatch(setuid(action.uid))
     })
   }
 }
 
-const getuidAction = (data) => {
+const getuidAction = (cb) => {
   return {
     [BZ_REQUESTER] : {
-      url: 'http://amaze.qiniudn.com/user'
+      url: 'http://amaze.qiniudn.com/user',
+      callback: cb
     }
   }
 }

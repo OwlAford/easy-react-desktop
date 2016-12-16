@@ -13,18 +13,18 @@ export default store => next => action => {
   }
 
   // 从action内提取所需参数
-  var { url } = reqAPI
-  
-  return doRequest(url)
+  var { url, callback } = reqAPI
+  return doRequest(url, callback)
   
 }
 
-const doRequest = (request) => {
+const doRequest = (request, callback) => {
   return fetch(request).then(response => response.json().then(json => ({ json, response })))
     .then(({ json, response }) => {
       if (!response.ok) {
         return Promise.reject(json)
       }
+      callback && callback(json)
       return json
   })
 }

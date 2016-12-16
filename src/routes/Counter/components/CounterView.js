@@ -1,5 +1,5 @@
 import React, { Component, PropTypes } from 'react'
-import { Row, Col, Button, Radio } from 'antd'
+import { Row, Col, Button, Radio, Card } from 'antd'
 import echarts, { line, tooltip } from 'echarts'
 const ButtonGroup = Button.Group
 
@@ -151,6 +151,29 @@ export default class CounterView extends Component {
             </Col>
             <Col span={12}>
                 <span style={{lineHeight: '28px', float: 'right'}}>当前选中发票类型：{this.state.invoiceType}</span>
+            </Col>
+          </Row>
+          <Row style={{padding: '20px 0'}}>
+            <Col span={8} style={{ padding: '0 10px' }}>
+              <Card title="Card title" extra={<a href="#">More</a>}>
+                <p>Card content</p>
+                <p>Card content</p>
+                <p>Card content</p>
+              </Card>
+            </Col>
+            <Col span={8} style={{ padding: '0 10px' }}>
+              <Card title="Card title" extra={<a href="#">More</a>}>
+                <p>Card content</p>
+                <p>Card content</p>
+                <p>Card content</p>
+              </Card>
+            </Col>
+            <Col span={8} style={{ padding: '0 10px' }}>
+              <Card title="Card title" extra={<a href="#">More</a>}>
+                <p>Card content</p>
+                <p>Card content</p>
+                <p>Card content</p>
+              </Card>
             </Col>
           </Row>
         </div>

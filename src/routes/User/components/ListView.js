@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react'
-import Item from './Item'
+import Item from './ItemView'
 
 const List = ({ groups }) => (
   <ul>

@@ -1,12 +1,10 @@
 import React, { PropTypes } from 'react'
 
 const Item = ({ name, city, time }) => (
-  <li>
-    <span>银行名称：{name}</span>
-    &nbsp;
-    <span>所在城市：{city}</span>
-    &nbsp;
-    <span>注册时间：{time}</span>
+  <li style={{lineHeight: '24px'}}>
+    <span className='mr10'>银行名称：{name}</span>
+    <span className='mr10'>所在城市：{city}</span>
+    <span className='mr10'>注册时间：{time}</span>
   </li>
 )
 

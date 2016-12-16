@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { getuidAsync, setuid } from '../store/user'
 
-import User from '../components/User'
+import UserView from '../components/UserView'
 
 const mapDispatchToProps = {
   clear : () => setuid('default'),
@@ -12,4 +12,4 @@ const mapStateToProps = (state) => ({
   user : state.user
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(User)
+export default connect(mapStateToProps, mapDispatchToProps)(UserView)
