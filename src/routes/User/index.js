@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import { injectReducer } from 'STORE/reducers'
 import Message from 'COMPONENT/Message'
-import Phone from 'COMPONENT/Phone'
+import Review from 'COMPONENT/Review'
 import { setname } from './store/user'
 
 export default (store) => ({
@@ -27,12 +27,12 @@ export default (store) => ({
   },
 
   childRoutes: [
-  { // 对应 Phone
-    path: 'phone',
+  { // 对应 Review
+    path: 'review',
     getComponent (nextState, cb) {
       require.ensure([], (require) => {
-        cb(null, Phone)
-      }, 'phone')
+        cb(null, Review)
+      }, 'review')
     },
     onEnter: () => console.log('用户认证！')
   }]

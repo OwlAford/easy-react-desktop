@@ -141,7 +141,7 @@ export default class UserView extends Component {
         <div className='content-cell'>
           <Menu onClick={e => this.handlePage(e)} selectedKeys={[this.state.current]} mode="horizontal">
             <Menu.Item key="/user">账户信息完善</Menu.Item>
-            <Menu.Item key="/user/phone">账户信息一览</Menu.Item>
+            <Menu.Item key="/user/review">账户信息一览</Menu.Item>
           </Menu>
           { this.props.children }
         </div>
