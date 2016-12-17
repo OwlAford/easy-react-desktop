@@ -133,7 +133,7 @@ export default class UserView extends Component {
             <Col span={16}>
               <InputGroup size="large">
                 <Col span="6">
-                  <Input defaultValue="uid" disabled/>
+                  <Input defaultValue="UID" disabled/>
                 </Col>
                 <Col span="12">
                   <Input placeholder='点击获取uid' name="uidVal" value={this.state.uidVal} onChange={this.handleChange}/>
