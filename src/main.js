@@ -55,5 +55,12 @@ if (__DEV__) {
   }
 }
 
+// ie兼容 startWith bug
+if (typeof String.prototype.startsWith != 'function') {  
+  String.prototype.startsWith = function (prefix){  
+    return this.slice(0, prefix.length) === prefix
+  }  
+}  
+
 // 开始正式渲染
 render()

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { injectReducer } from 'STORE/reducers'
 import Message from 'COMPONENT/Message'
 import Review from 'COMPONENT/Review'
-import { setname } from './store/user'
+import { setname, setRegData } from './store/user'
 
 export default (store) => ({
   path : 'user',
@@ -19,8 +19,11 @@ export default (store) => ({
     getComponent (nextState, cb) {
       require.ensure([], (require) => {
         cb(null, connect(
-          (state) => ({ mine : state.user.mine }), 
-          { setname }
+          (state) => ({ 
+            mine : state.user.mine, 
+            regData : state.user.regData 
+          }), 
+          { setname, setRegData }
         )(Message))
       }, 'message')
     }
@@ -31,7 +34,12 @@ export default (store) => ({
     path: 'review',
     getComponent (nextState, cb) {
       require.ensure([], (require) => {
-        cb(null, Review)
+        cb(null, connect(
+          (state) => ({ 
+            regData : state.user.regData 
+          }), 
+          { setRegData }
+        )(Review))
       }, 'review')
     },
     onEnter: () => console.log('用户认证！')

@@ -46,6 +46,7 @@ class MessageForm extends Component {
       if (!err) {
         console.log('Received values of form: ', values)
       }
+      this.props.setRegData(values, () => {alert('success!')})
     })
   }
 

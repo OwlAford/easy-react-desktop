@@ -9,6 +9,20 @@ export function setuid (value) {
   }
 }
 
+export function setRegData (data, cb) {
+  return (dispatch) => {
+    dispatch(setRegDataAction(data))
+    cb && cb()
+  }
+}
+
+export function setRegDataAction (data) {
+  return {
+    type : 'SET_REG_DATA',
+    payload : data
+  }
+}
+
 export function setname (value) {
   return {
     type    : 'SET_NAME',
@@ -37,7 +51,8 @@ const getuidAction = (cb) => {
 
 const initialState = {
   uid: '',
-  mine: ''
+  mine: '',
+  regData: null
 }
 export default function userReducer (state = initialState, action) {
   switch (action.type) {
@@ -50,6 +65,11 @@ export default function userReducer (state = initialState, action) {
       return {
         ...state,
         mine: action.payload
+      }
+    case 'SET_REG_DATA' :
+      return {
+        ...state,
+        regData: action.payload
       }
     default:
       return state

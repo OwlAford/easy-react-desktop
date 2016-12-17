@@ -17,7 +17,7 @@ export default class Message extends Component {
   }
 
   render() {
-    let { mine, router, setname } = this.props
+    let { mine, router, setname, setRegData, regData } = this.props
     return (
       <div>
         <Row type="flex" justify="space-between" style={{padding: '20px'}}>
@@ -39,7 +39,7 @@ export default class Message extends Component {
             <Button type="primary" onClick={router.goBack}>返回上一页</Button>
           </Col>
         </Row>
-        <MessageForm setName={setname} mineName={mine} />
+        <MessageForm setName={setname} mineName={mine} regData={regData} setRegData={setRegData} />
       </div>
     )
   }
