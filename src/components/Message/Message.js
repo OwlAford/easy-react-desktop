@@ -12,10 +12,6 @@ export default class Message extends Component {
     this.handleChange = handleChange.bind(this)
   }
 
-  getVal (ev) {
-    console.log(ev.target.value)
-  }
-
   render() {
     let { mine, router, setname, setRegData, regData } = this.props
     return (

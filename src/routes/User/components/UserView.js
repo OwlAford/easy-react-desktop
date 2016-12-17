@@ -50,7 +50,13 @@ export default class UserView extends Component {
     }
     // 将handleChange方法绑定在this上
     this.handleChange = handleChange.bind(this)
+    browserHistory.listen(() => {
+      this.setState({
+        current: browserHistory.getCurrentLocation().pathname
+      })
+    })
   }
+
   asynsGetUid () {
     this.setState({
       loadUid: true
@@ -79,6 +85,12 @@ export default class UserView extends Component {
       current: e.key
     })
     browserHistory.push(e.key)
+  }
+
+  componentDidMount () {
+    this.setState({
+      current: browserHistory.getCurrentLocation().pathname
+    })
   }
 
   render() {

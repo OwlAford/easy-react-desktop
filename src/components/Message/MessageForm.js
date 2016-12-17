@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
-import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button } from 'antd'
+import { browserHistory } from 'react-router'
+import { Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, notification } from 'antd'
 const FormItem = Form.Item
 const Option = Select.Option
 
@@ -45,8 +46,19 @@ class MessageForm extends Component {
     this.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values)
+        this.props.setRegData(values, () => {
+          browserHistory.push('/user/review')
+          notification.open({
+            message: '信息填写提示',
+            description: '填写信息保存成功！'
+          })
+        })
+      } else {
+        notification.open({
+          message: '信息填写提示',
+          description: '请填写正确的信息！'
+        })
       }
-      this.props.setRegData(values, () => {alert('success!')})
     })
   }
 
@@ -195,7 +207,10 @@ class MessageForm extends Component {
           </FormItem>
           <FormItem {...tailFormItemLayout} style={{ marginBottom: 8 }}>
             {getFieldDecorator('agreement', {
-              valuePropName: 'checked'
+              valuePropName: 'checked',
+              rules: [{
+                required: true, message: 'Please Read The Agreement!',
+              }]
             })(
               <Checkbox>I had read the <a>agreement</a></Checkbox>
             )}
