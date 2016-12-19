@@ -1,6 +1,6 @@
 {
-  "name": "blade",
-  "version": "0.0.2",
+  "name": "react-blade",
+  "version": "1.0.0",
   "description": "Get started with React, Redux, and React-Router!",
   "main": "index.js",
   "engines": {
