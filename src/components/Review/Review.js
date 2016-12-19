@@ -60,7 +60,6 @@ export default class Review extends Component {
 
   render() {
     let { regData } = this.props
-    regData.key = 1
     let dataList = (regData) => (
       <div>
         <Table columns={columns} dataSource={[regData]} />
